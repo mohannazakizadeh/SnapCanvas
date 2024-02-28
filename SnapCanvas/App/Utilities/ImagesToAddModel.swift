@@ -19,15 +19,4 @@ struct ImageToAdd: Equatable {
     var size: CGSize
     var isSelected: Bool = false
     var angle: Angle = Angle()
-    
-//    init(image: UIImage, position: CGPoint, size: CGSize, isSelected: Bool) {
-//        self.image = image
-//        self.position = position
-//        self.size = size
-//        self.isSelected = isSelected
-//    }
-//    
-//    static func == (lhs: ImageToAdd, rhs: ImageToAdd) -> Bool {
-//        lhs.id == rhs.id
-//    }
 }

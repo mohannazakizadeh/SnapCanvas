@@ -25,7 +25,6 @@
 		015C4D662B8B6220002D306B /* OverlayServiceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D652B8B6220002D306B /* OverlayServiceRouter.swift */; };
 		015C4D682B8B63C8002D306B /* OverlayDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D672B8B63C8002D306B /* OverlayDataProvider.swift */; };
 		01A726932B8B669C0079C197 /* spm-modules in Resources */ = {isa = PBXBuildFile; fileRef = 01A726922B8B669C0079C197 /* spm-modules */; };
-		01A726952B8B679E0079C197 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A726942B8B679E0079C197 /* CanvasView.swift */; };
 		01A7269D2B8B778D0079C197 /* OverlayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */; };
 		01A7269F2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */; };
 		01A726A42B8B7BBA0079C197 /* OverlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A726A32B8B7BBA0079C197 /* OverlayCell.swift */; };
@@ -75,7 +74,6 @@
 		015C4D652B8B6220002D306B /* OverlayServiceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayServiceRouter.swift; sourceTree = "<group>"; };
 		015C4D672B8B63C8002D306B /* OverlayDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayDataProvider.swift; sourceTree = "<group>"; };
 		01A726922B8B669C0079C197 /* spm-modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "spm-modules"; sourceTree = "<group>"; };
-		01A726942B8B679E0079C197 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCollectionViewController.swift; sourceTree = "<group>"; };
 		01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCollectionViewDatasource.swift; sourceTree = "<group>"; };
 		01A726A32B8B7BBA0079C197 /* OverlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCell.swift; sourceTree = "<group>"; };
@@ -219,9 +217,8 @@
 		01A726962B8B681D0079C197 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				01A726942B8B679E0079C197 /* CanvasView.swift */,
-				015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */,
 				01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */,
+				015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */,
 				01A769982B8F414400D8EE48 /* CustomImageView.swift */,
 				01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */,
 			);
@@ -241,7 +238,6 @@
 			children = (
 				015BF9872B8905DB0012C4D9 /* SnapCanvasApp.swift */,
 				015BF9892B8905DB0012C4D9 /* ContentView.swift */,
-				01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */,
 				01A726962B8B681D0079C197 /* Canvas */,
 				015C4D422B8A2936002D306B /* BottomSheet */,
 				01A7269B2B8B77210079C197 /* OverlayCollectionView */,
@@ -264,6 +260,7 @@
 		01A726A02B8B78BC0079C197 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */,
 				015C4D4C2B8A5607002D306B /* Service */,
 				015C4D612B8B616E002D306B /* Model */,
 			);
@@ -423,7 +420,6 @@
 				01A769932B8BEC5200D8EE48 /* ImagesToAddModel.swift in Sources */,
 				015C4D682B8B63C8002D306B /* OverlayDataProvider.swift in Sources */,
 				01A726A42B8B7BBA0079C197 /* OverlayCell.swift in Sources */,
-				01A726952B8B679E0079C197 /* CanvasView.swift in Sources */,
 				01A769992B8F414400D8EE48 /* CustomImageView.swift in Sources */,
 				015BF9882B8905DB0012C4D9 /* SnapCanvasApp.swift in Sources */,
 				015BF9B22B8911230012C4D9 /* CanvasViewModel.swift in Sources */,

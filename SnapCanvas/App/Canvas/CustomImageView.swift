@@ -24,7 +24,7 @@ struct CustomImageView: View {
                 var newLocation = startLocation ?? imageModel.position
                 newLocation.x += value.translation.width
                 newLocation.y += value.translation.height
-                imageModel.position = newLocation
+                parentViewModel.snapDragging(for: imageModel.id, location: newLocation, geometry: geometry)
             }
             .updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? imageModel.position
@@ -35,33 +35,19 @@ struct CustomImageView: View {
         DragGesture()
             .updating($fingerLocation) { (value, fingerLocation, transaction) in
                 fingerLocation = value.location
-            }
-            .onChanged { gesture in
-                
-                // Check proximity to edges
-                parentViewModel.snapDragging(for: imageModel.id, location: gesture.location, geometry: geometry)
-//                let closeToLeftOrRight = position.width < edgeThreshold || (geometry.size.width - (position.width + geometry.size.width / 2)) < edgeThreshold
-//                let closeToTopOrBottom = position.height < edgeThreshold || (geometry.size.height - (position.height + geometry.size.height / 2)) < edgeThreshold
-//                
-//                shouldShowSnapLines = closeToLeftOrRight || closeToTopOrBottom
-            }
-    }
+            }    }
     
     var body: some View {
         Image(uiImage: imageModel.image)
             .resizable()
             .scaledToFit()
             .border(imageModel.isSelected ? Color.blue : Color.clear, width: 2)
+            .frame(width: imageModel.size.width, height: imageModel.size.height)
             .position(imageModel.position)
             .rotationEffect(imageModel.angle)
+            
             .gesture(
                 simpleDrag.simultaneously(with: fingerDrag)
-            )
-            .simultaneousGesture(
-                RotationGesture()
-                    .onChanged({ angle in
-                        imageModel.angle = angle
-                    })
             )
             .onTapGesture {
                 imageModel.isSelected = true

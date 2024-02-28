@@ -16,7 +16,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-//            CanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: $imagesToAdd.images))
             SwiftUIView(viewModel: CanvasViewModel(numberOfSections: 3, images: $imagesToAdd.images))
             
             RoundButton(backgroundColor: Color.white, foregroundColor: .black, identifier: "ShowSheetButton", imageName: "plus") {

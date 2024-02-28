@@ -40,7 +40,7 @@ struct CustomStrokeView: View {
         GeometryReader { geometry in
             let sectionWidth = geometry.size.width / CGFloat(viewModel.numberOfSections)
             
-            ZStack {
+            ZStack() {
                 
                 // Adding images to the view
                 ForEach(0..<viewModel.images.count, id: \.self) { index in
@@ -70,31 +70,25 @@ struct CustomStrokeView: View {
                     }
                     .stroke(Color.black, lineWidth: 1)
                 }
-                
-//                if viewModel.showHorizontalSnapIndicator {
+                if viewModel.showHorizontalSnapIndicator {
                     Path { path in
-                        let start = CGPoint(x: viewModel.snapIndicatorPosition.x, y: 0)
-                        let end = CGPoint(x: viewModel.snapIndicatorPosition.x, y: geometry.size.height)
-                        path.move(to: start)
-                        path.addLine(to: end)
+                        path.move(to: CGPoint(x: 0, y: viewModel.snapIndicatorPosition.y))
+                        path.addLine(to: CGPoint(x: geometry.size.width, y: viewModel.snapIndicatorPosition.y))
                     }
-                    .stroke(Color.yellow, lineWidth: 1)
-//                }
+                    .stroke(Color.red, lineWidth: 2)
+                }
+                
+                if viewModel.showVerticalSnapIndicator {
+                    Path { path in
+                        path.move(to: CGPoint(x: viewModel.snapIndicatorPosition.x, y: 0))
+                        path.addLine(to: CGPoint(x: viewModel.snapIndicatorPosition.x, y: geometry.size.height))
+                    }
+                    .stroke(Color.red, lineWidth: 2)
+                }
             }
+            .id(viewModel.showHorizontalSnapIndicator || viewModel.showVerticalSnapIndicator)
         }
         .clipped()
-    }
-    
-    @ViewBuilder
-    private func snapIndicator() -> some View {
-        let isHorizontal = viewModel.snapIndicatorOrientation == .horizontal
-        Path { path in
-            let start = isHorizontal ? CGPoint(x: 0, y: viewModel.snapIndicatorPosition.y) : CGPoint(x: viewModel.snapIndicatorPosition.x, y: 0)
-            let end = isHorizontal ? CGPoint(x: UIScreen.main.bounds.width, y: viewModel.snapIndicatorPosition.y) : CGPoint(x: viewModel.snapIndicatorPosition.x, y: UIScreen.main.bounds.height)
-            path.move(to: start)
-            path.addLine(to: end)
-        }
-        .stroke(Color.yellow, lineWidth: 2)
     }
 }
 
