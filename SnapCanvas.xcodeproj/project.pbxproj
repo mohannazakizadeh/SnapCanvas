@@ -14,6 +14,28 @@
 		015BF9992B8905E30012C4D9 /* SnapCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015BF9982B8905E30012C4D9 /* SnapCanvasTests.swift */; };
 		015BF9A32B8905E30012C4D9 /* SnapCanvasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015BF9A22B8905E30012C4D9 /* SnapCanvasUITests.swift */; };
 		015BF9A52B8905E30012C4D9 /* SnapCanvasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015BF9A42B8905E30012C4D9 /* SnapCanvasUITestsLaunchTests.swift */; };
+		015BF9B22B8911230012C4D9 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */; };
+		015C4D3B2B89FF54002D306B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D3A2B89FF54002D306B /* Extension.swift */; };
+		015C4D3F2B8A1D20002D306B /* BottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D3E2B8A1D20002D306B /* BottomSheetViewModel.swift */; };
+		015C4D412B8A2929002D306B /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D402B8A2929002D306B /* BottomSheetView.swift */; };
+		015C4D5A2B8B5596002D306B /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 015C4D592B8B5596002D306B /* Networking */; };
+		015C4D5C2B8B5596002D306B /* NetworkingInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 015C4D5B2B8B5596002D306B /* NetworkingInterface */; };
+		015C4D5E2B8B5EA4002D306B /* OverlayServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D5D2B8B5EA4002D306B /* OverlayServiceProtocol.swift */; };
+		015C4D632B8B61CF002D306B /* OverlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D622B8B61CF002D306B /* OverlayModel.swift */; };
+		015C4D662B8B6220002D306B /* OverlayServiceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D652B8B6220002D306B /* OverlayServiceRouter.swift */; };
+		015C4D682B8B63C8002D306B /* OverlayDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4D672B8B63C8002D306B /* OverlayDataProvider.swift */; };
+		01A726932B8B669C0079C197 /* spm-modules in Resources */ = {isa = PBXBuildFile; fileRef = 01A726922B8B669C0079C197 /* spm-modules */; };
+		01A726952B8B679E0079C197 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A726942B8B679E0079C197 /* CanvasView.swift */; };
+		01A7269D2B8B778D0079C197 /* OverlayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */; };
+		01A7269F2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */; };
+		01A726A42B8B7BBA0079C197 /* OverlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A726A32B8B7BBA0079C197 /* OverlayCell.swift */; };
+		01A726A62B8B819E0079C197 /* OverlaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */; };
+		01A726AB2B8BB1370079C197 /* SwiftUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 01A726AA2B8BB1370079C197 /* SwiftUIComponents */; };
+		01A769912B8BB3B900D8EE48 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */; };
+		01A769932B8BEC5200D8EE48 /* ImagesToAddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */; };
+		01A769972B8E1A1400D8EE48 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */; };
+		01A769992B8F414400D8EE48 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769982B8F414400D8EE48 /* CustomImageView.swift */; };
+		01A7699B2B8F426800D8EE48 /* CustomImageViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +66,25 @@
 		015BF99E2B8905E30012C4D9 /* SnapCanvasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapCanvasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		015BF9A22B8905E30012C4D9 /* SnapCanvasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCanvasUITests.swift; sourceTree = "<group>"; };
 		015BF9A42B8905E30012C4D9 /* SnapCanvasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCanvasUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		015C4D3A2B89FF54002D306B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		015C4D3E2B8A1D20002D306B /* BottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewModel.swift; sourceTree = "<group>"; };
+		015C4D402B8A2929002D306B /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		015C4D5D2B8B5EA4002D306B /* OverlayServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayServiceProtocol.swift; sourceTree = "<group>"; };
+		015C4D622B8B61CF002D306B /* OverlayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayModel.swift; sourceTree = "<group>"; };
+		015C4D652B8B6220002D306B /* OverlayServiceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayServiceRouter.swift; sourceTree = "<group>"; };
+		015C4D672B8B63C8002D306B /* OverlayDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayDataProvider.swift; sourceTree = "<group>"; };
+		01A726922B8B669C0079C197 /* spm-modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "spm-modules"; sourceTree = "<group>"; };
+		01A726942B8B679E0079C197 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCollectionViewController.swift; sourceTree = "<group>"; };
+		01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCollectionViewDatasource.swift; sourceTree = "<group>"; };
+		01A726A32B8B7BBA0079C197 /* OverlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayCell.swift; sourceTree = "<group>"; };
+		01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaysViewModel.swift; sourceTree = "<group>"; };
+		01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesToAddModel.swift; sourceTree = "<group>"; };
+		01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		01A769982B8F414400D8EE48 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015C4D5C2B8B5596002D306B /* NetworkingInterface in Frameworks */,
+				015C4D5A2B8B5596002D306B /* Networking in Frameworks */,
+				01A726AB2B8BB1370079C197 /* SwiftUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +122,7 @@
 				015BF9972B8905E30012C4D9 /* SnapCanvasTests */,
 				015BF9A12B8905E30012C4D9 /* SnapCanvasUITests */,
 				015BF9852B8905DB0012C4D9 /* Products */,
+				015C4D522B8A58A5002D306B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,9 +139,9 @@
 		015BF9862B8905DB0012C4D9 /* SnapCanvas */ = {
 			isa = PBXGroup;
 			children = (
-				015BF9872B8905DB0012C4D9 /* SnapCanvasApp.swift */,
-				015BF9892B8905DB0012C4D9 /* ContentView.swift */,
-				015BF98B2B8905E00012C4D9 /* Assets.xcassets */,
+				01A726922B8B669C0079C197 /* spm-modules */,
+				01A7269A2B8B75A60079C197 /* App */,
+				01A726992B8B75830079C197 /* Supporting Files */,
 				015BF98D2B8905E00012C4D9 /* Preview Content */,
 			);
 			path = SnapCanvas;
@@ -123,8 +168,106 @@
 			children = (
 				015BF9A22B8905E30012C4D9 /* SnapCanvasUITests.swift */,
 				015BF9A42B8905E30012C4D9 /* SnapCanvasUITestsLaunchTests.swift */,
+				015C4D3A2B89FF54002D306B /* Extension.swift */,
 			);
 			path = SnapCanvasUITests;
+			sourceTree = "<group>";
+		};
+		015C4D422B8A2936002D306B /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				015C4D402B8A2929002D306B /* BottomSheetView.swift */,
+				015C4D3E2B8A1D20002D306B /* BottomSheetViewModel.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		015C4D4C2B8A5607002D306B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				015C4D5D2B8B5EA4002D306B /* OverlayServiceProtocol.swift */,
+				015C4D642B8B620B002D306B /* Network */,
+				01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		015C4D522B8A58A5002D306B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		015C4D612B8B616E002D306B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				015C4D622B8B61CF002D306B /* OverlayModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		015C4D642B8B620B002D306B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				015C4D652B8B6220002D306B /* OverlayServiceRouter.swift */,
+				015C4D672B8B63C8002D306B /* OverlayDataProvider.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		01A726962B8B681D0079C197 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				01A726942B8B679E0079C197 /* CanvasView.swift */,
+				015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */,
+				01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */,
+				01A769982B8F414400D8EE48 /* CustomImageView.swift */,
+				01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		01A726992B8B75830079C197 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				015BF98B2B8905E00012C4D9 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01A7269A2B8B75A60079C197 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				015BF9872B8905DB0012C4D9 /* SnapCanvasApp.swift */,
+				015BF9892B8905DB0012C4D9 /* ContentView.swift */,
+				01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */,
+				01A726962B8B681D0079C197 /* Canvas */,
+				015C4D422B8A2936002D306B /* BottomSheet */,
+				01A7269B2B8B77210079C197 /* OverlayCollectionView */,
+				01A726A02B8B78BC0079C197 /* Utilities */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		01A7269B2B8B77210079C197 /* OverlayCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */,
+				01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */,
+				01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */,
+				01A726A32B8B7BBA0079C197 /* OverlayCell.swift */,
+			);
+			path = OverlayCollectionView;
+			sourceTree = "<group>";
+		};
+		01A726A02B8B78BC0079C197 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				015C4D4C2B8A5607002D306B /* Service */,
+				015C4D612B8B616E002D306B /* Model */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +286,11 @@
 			dependencies = (
 			);
 			name = SnapCanvas;
+			packageProductDependencies = (
+				015C4D592B8B5596002D306B /* Networking */,
+				015C4D5B2B8B5596002D306B /* NetworkingInterface */,
+				01A726AA2B8BB1370079C197 /* SwiftUIComponents */,
+			);
 			productName = SnapCanvas;
 			productReference = 015BF9842B8905DB0012C4D9 /* SnapCanvas.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +363,8 @@
 				Base,
 			);
 			mainGroup = 015BF97B2B8905DB0012C4D9;
+			packageReferences = (
+			);
 			productRefGroup = 015BF9852B8905DB0012C4D9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				015BF98F2B8905E00012C4D9 /* Preview Assets.xcassets in Resources */,
+				01A726932B8B669C0079C197 /* spm-modules in Resources */,
 				015BF98C2B8905E00012C4D9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +408,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015C4D632B8B61CF002D306B /* OverlayModel.swift in Sources */,
 				015BF98A2B8905DB0012C4D9 /* ContentView.swift in Sources */,
+				01A7699B2B8F426800D8EE48 /* CustomImageViewViewModel.swift in Sources */,
+				01A769972B8E1A1400D8EE48 /* SwiftUIView.swift in Sources */,
+				015C4D412B8A2929002D306B /* BottomSheetView.swift in Sources */,
+				01A726A62B8B819E0079C197 /* OverlaysViewModel.swift in Sources */,
+				01A7269D2B8B778D0079C197 /* OverlayCollectionViewController.swift in Sources */,
+				015C4D3F2B8A1D20002D306B /* BottomSheetViewModel.swift in Sources */,
+				01A7269F2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift in Sources */,
+				015C4D662B8B6220002D306B /* OverlayServiceRouter.swift in Sources */,
+				01A769912B8BB3B900D8EE48 /* NetworkLogger.swift in Sources */,
+				015C4D5E2B8B5EA4002D306B /* OverlayServiceProtocol.swift in Sources */,
+				01A769932B8BEC5200D8EE48 /* ImagesToAddModel.swift in Sources */,
+				015C4D682B8B63C8002D306B /* OverlayDataProvider.swift in Sources */,
+				01A726A42B8B7BBA0079C197 /* OverlayCell.swift in Sources */,
+				01A726952B8B679E0079C197 /* CanvasView.swift in Sources */,
+				01A769992B8F414400D8EE48 /* CustomImageView.swift in Sources */,
 				015BF9882B8905DB0012C4D9 /* SnapCanvasApp.swift in Sources */,
+				015BF9B22B8911230012C4D9 /* CanvasViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015C4D3B2B89FF54002D306B /* Extension.swift in Sources */,
 				015BF9A52B8905E30012C4D9 /* SnapCanvasUITestsLaunchTests.swift in Sources */,
 				015BF9A32B8905E30012C4D9 /* SnapCanvasUITests.swift in Sources */,
 			);
@@ -588,6 +757,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		015C4D592B8B5596002D306B /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		015C4D5B2B8B5596002D306B /* NetworkingInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkingInterface;
+		};
+		01A726AA2B8BB1370079C197 /* SwiftUIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUIComponents;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 015BF97C2B8905DB0012C4D9 /* Project object */;
 }
