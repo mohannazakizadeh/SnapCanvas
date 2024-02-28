@@ -95,37 +95,3 @@ class CanvasViewModel: ObservableObject {
         }
     }
 }
-
-
-//guard let index = images.firstIndex(where: { $0.id == id }) else { return }
-//
-//// Calculate potential snap positions
-//let potentialSnaps = [
-//    CGPoint(x: snapThreshold, y: location.y), // Left edge
-//    CGPoint(x: geometry.size.width - snapThreshold, y: location.y), // Right edge
-//    CGPoint(x: location.x, y: snapThreshold), // Top edge
-//    CGPoint(x: location.x, y: geometry.size.height - snapThreshold) // Bottom edge
-//]
-//
-//// Determine closest snap position if within threshold
-//let closestSnap = potentialSnaps.min { a, b in
-//    distance(a, location) < distance(b, location)
-//}
-//
-//if let snap = closestSnap, distance(snap, location) < snapThreshold {
-//    // Snap to closest edge
-//    images[index].position = snap
-//    
-//    // Update snap indicators based on which edge is closest
-//    showHorizontalSnapIndicator = true
-//    showVerticalSnapIndicator = true
-//    snapIndicatorPosition = snap
-//} else {
-//    // No snapping; update position normally
-//    images[index].position = location
-//    showHorizontalSnapIndicator = false
-//    showVerticalSnapIndicator = false
-//    }
-//private func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
-//    sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))
-//}

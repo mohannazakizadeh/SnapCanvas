@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomImageView: View {
-    @Binding var imageModel: ImageToAdd 
+    @Binding var imageModel: ImageToAdd
     @ObservedObject var parentViewModel: CanvasViewModel
     var geometry: GeometryProxy
     let edgeThreshold: CGFloat = 50.0
@@ -31,12 +31,6 @@ struct CustomImageView: View {
             }
     }
     
-    private var fingerDrag: some Gesture {
-        DragGesture()
-            .updating($fingerLocation) { (value, fingerLocation, transaction) in
-                fingerLocation = value.location
-            }    }
-    
     var body: some View {
         Image(uiImage: imageModel.image)
             .resizable()
@@ -45,9 +39,8 @@ struct CustomImageView: View {
             .frame(width: imageModel.size.width, height: imageModel.size.height)
             .position(imageModel.position)
             .rotationEffect(imageModel.angle)
-            
             .gesture(
-                simpleDrag.simultaneously(with: fingerDrag)
+                simpleDrag
             )
             .onTapGesture {
                 imageModel.isSelected = true
@@ -74,13 +67,13 @@ struct Preview: View {
                 parentViewModel: CanvasViewModel(numberOfSections: 3, images: .constant([])),
                 geometry: geometry
             )
-                .task {
-                    /// Moving item to center after adding
-                    mock.position = CGPoint(
-                        x: geometry.size.width / 2,
-                        y: geometry.size.height / 2
-                    )
-                }
+            .onAppear {
+                /// Moving item to center after adding
+                mock.position = CGPoint(
+                    x: geometry.size.width / 2,
+                    y: geometry.size.height / 2
+                )
+            }
         }
     }
-    }
+}

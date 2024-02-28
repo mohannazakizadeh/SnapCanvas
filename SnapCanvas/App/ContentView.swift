@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            SwiftUIView(viewModel: CanvasViewModel(numberOfSections: 3, images: $imagesToAdd.images))
+            ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: $imagesToAdd.images))
             
             RoundButton(backgroundColor: Color.white, foregroundColor: .black, identifier: "ShowSheetButton", imageName: "plus") {
                 showSheet = true

@@ -32,9 +32,9 @@
 		01A726AB2B8BB1370079C197 /* SwiftUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 01A726AA2B8BB1370079C197 /* SwiftUIComponents */; };
 		01A769912B8BB3B900D8EE48 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */; };
 		01A769932B8BEC5200D8EE48 /* ImagesToAddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */; };
-		01A769972B8E1A1400D8EE48 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */; };
+		01A769972B8E1A1400D8EE48 /* ScrollingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769962B8E1A1400D8EE48 /* ScrollingCanvasView.swift */; };
 		01A769992B8F414400D8EE48 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A769982B8F414400D8EE48 /* CustomImageView.swift */; };
-		01A7699B2B8F426800D8EE48 /* CustomImageViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */; };
+		01EF485A2B8FE2E90046F498 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF48592B8FE2E90046F498 /* CanvasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,9 +80,9 @@
 		01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaysViewModel.swift; sourceTree = "<group>"; };
 		01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		01A769922B8BEC5200D8EE48 /* ImagesToAddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesToAddModel.swift; sourceTree = "<group>"; };
-		01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		01A769962B8E1A1400D8EE48 /* ScrollingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingCanvasView.swift; sourceTree = "<group>"; };
 		01A769982B8F414400D8EE48 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageViewViewModel.swift; sourceTree = "<group>"; };
+		01EF48592B8FE2E90046F498 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,10 +217,8 @@
 		01A726962B8B681D0079C197 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				01A769962B8E1A1400D8EE48 /* SwiftUIView.swift */,
-				015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */,
-				01A769982B8F414400D8EE48 /* CustomImageView.swift */,
-				01A7699A2B8F426800D8EE48 /* CustomImageViewViewModel.swift */,
+				01EF485B2B8FE3350046F498 /* View */,
+				01EF485C2B8FE34B0046F498 /* ViewModel */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
@@ -249,10 +247,8 @@
 		01A7269B2B8B77210079C197 /* OverlayCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */,
-				01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */,
-				01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */,
-				01A726A32B8B7BBA0079C197 /* OverlayCell.swift */,
+				01EF485D2B8FE3690046F498 /* View */,
+				01EF485E2B8FE3720046F498 /* ViewModel */,
 			);
 			path = OverlayCollectionView;
 			sourceTree = "<group>";
@@ -265,6 +261,42 @@
 				015C4D612B8B616E002D306B /* Model */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		01EF485B2B8FE3350046F498 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A769962B8E1A1400D8EE48 /* ScrollingCanvasView.swift */,
+				01EF48592B8FE2E90046F498 /* CanvasView.swift */,
+				01A769982B8F414400D8EE48 /* CustomImageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01EF485C2B8FE34B0046F498 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				015BF9B12B8911230012C4D9 /* CanvasViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01EF485D2B8FE3690046F498 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01A7269C2B8B778C0079C197 /* OverlayCollectionViewController.swift */,
+				01A726A32B8B7BBA0079C197 /* OverlayCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01EF485E2B8FE3720046F498 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01A726A52B8B819E0079C197 /* OverlaysViewModel.swift */,
+				01A7269E2B8B78B50079C197 /* OverlayCollectionViewDatasource.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,10 +437,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EF485A2B8FE2E90046F498 /* CanvasView.swift in Sources */,
 				015C4D632B8B61CF002D306B /* OverlayModel.swift in Sources */,
 				015BF98A2B8905DB0012C4D9 /* ContentView.swift in Sources */,
-				01A7699B2B8F426800D8EE48 /* CustomImageViewViewModel.swift in Sources */,
-				01A769972B8E1A1400D8EE48 /* SwiftUIView.swift in Sources */,
+				01A769972B8E1A1400D8EE48 /* ScrollingCanvasView.swift in Sources */,
 				015C4D412B8A2929002D306B /* BottomSheetView.swift in Sources */,
 				01A726A62B8B819E0079C197 /* OverlaysViewModel.swift in Sources */,
 				01A7269D2B8B778D0079C197 /* OverlayCollectionViewController.swift in Sources */,
