@@ -10,8 +10,7 @@ import SwiftUIComponents
 
 struct ContentView: View {
     
-    @State var showSheet = false
-    @State var showOverlays = false
+    @State var activeSheet: ActiveSheet?
     @StateObject var imagesToAdd: ImagesToAddModel = ImagesToAddModel()
     
     var body: some View {
@@ -19,21 +18,37 @@ struct ContentView: View {
             ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: $imagesToAdd.images))
             
             RoundButton(backgroundColor: Color.white, foregroundColor: .black, identifier: "ShowSheetButton", imageName: "plus") {
-                showSheet = true
+                activeSheet = .addContentBottomSheet
             }
         }
-        .sheet(isPresented: $showSheet, content: {
-            BottomSheetView(viewModel: BottomSheetViewModel(showBottomSheet: $showSheet, showOverlays: $showOverlays))
-                .presentationDetents([.height(150)])
-        })
-        
-        .sheet(isPresented: $showOverlays, content: {
-            OverlayCollectionViewRepresentable(imageToAddModel: imagesToAdd) {
-                showOverlays = false
+        .sheet(item: $activeSheet, content: { sheet in
+            switch sheet {
+            case .addContentBottomSheet:
+                BottomSheetView(viewModel: BottomSheetViewModel(activeSheet: $activeSheet))
+                    .presentationDetents([.height(150)])
+                
+            case .overLaysBottomSheet:
+                OverlayCollectionViewRepresentable(imageToAddModel: imagesToAdd) {
+                    activeSheet = nil
+                }
             }
         })
-        
         .background(Color.black)
+    }
+}
+
+enum ActiveSheet: Identifiable {
+    case addContentBottomSheet
+    case overLaysBottomSheet
+    
+    // This computed property provides a unique ID for each case
+    var id: Int {
+        switch self {
+        case .addContentBottomSheet:
+            return 0
+        case .overLaysBottomSheet:
+            return 1
+        }
     }
 }
 

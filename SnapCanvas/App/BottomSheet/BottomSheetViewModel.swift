@@ -10,12 +10,10 @@ import Combine
 
 class BottomSheetViewModel: ObservableObject {
     
-    @Binding var showBottomSheet: Bool
-    @Binding var showOverlays: Bool
+    @Binding var activeSheet: ActiveSheet?
     
-    init(showBottomSheet: Binding<Bool>, showOverlays: Binding<Bool>) {
-        self._showBottomSheet = showBottomSheet
-        self._showOverlays = showOverlays
+    init(activeSheet: Binding<ActiveSheet?>) {
+        self._activeSheet = activeSheet
     }
     
     let buttonsInfo = [
@@ -27,7 +25,6 @@ class BottomSheetViewModel: ObservableObject {
     ]
     
     func OverlayButtonTapped() {
-        showBottomSheet = false
-        showOverlays = true
+        activeSheet = .overLaysBottomSheet
     }
 }

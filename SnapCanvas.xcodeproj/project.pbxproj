@@ -183,9 +183,9 @@
 		015C4D4C2B8A5607002D306B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */,
 				015C4D5D2B8B5EA4002D306B /* OverlayServiceProtocol.swift */,
 				015C4D642B8B620B002D306B /* Network */,
-				01A769902B8BB3B900D8EE48 /* NetworkLogger.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";

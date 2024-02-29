@@ -44,7 +44,8 @@ final class OverlayCollectionViewDataSource: NSObject, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let image = overlayImagesCache.object(forKey: NSNumber(value: indexPath.row)) {
             let size = viewModel.getSize(for: image)
-            let imageToAddModel = ImageToAdd(image: image, position: .zero, size: size)
+            let position = CGPoint(x: size.width / 2, y: size.height / 2)
+            let imageToAddModel = ImageToAdd(image: image, position: position, size: size, isSelected: true)
             viewModel.imagesToAddModel.images.append(imageToAddModel)
         }
         viewModel.onRequestDismiss?()
@@ -60,7 +61,7 @@ final class OverlayCollectionViewDataSource: NSObject, UICollectionViewDataSourc
             cell.overlayImageView.image = cachedImage
         } else {
             Task {
-                if let image = try? await cell.fetchImage(from: imageURL) {
+                if let image = try? await viewModel.loadImage(for: imageURL) {
                     await MainActor.run {
                         cell.overlayImageView.image = image
                         self.overlayImagesCache.setObject(image, forKey: cellNumber)

@@ -40,5 +40,5 @@ struct BottomSheetButtonView: View {
 }
 
 #Preview {
-    BottomSheetView(viewModel: BottomSheetViewModel(showBottomSheet: .constant(false), showOverlays: .constant(false)))
+    BottomSheetView(viewModel: BottomSheetViewModel(activeSheet: .constant(.addContentBottomSheet)))
 }

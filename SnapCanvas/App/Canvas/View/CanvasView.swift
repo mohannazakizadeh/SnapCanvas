@@ -15,19 +15,15 @@ struct CanvasView: View {
             let sectionWidth = geometry.size.width / CGFloat(viewModel.numberOfSections)
             
             ZStack() {
-                
                 // Adding images to the view
                 ForEach(0..<viewModel.images.count, id: \.self) { index in
                     CustomImageView(
-                        imageModel: $viewModel.images[index],
+                        imageModel: viewModel.images[index],
                         parentViewModel: viewModel,
                         geometry: geometry,
-                        didSelectAction: {
-                            viewModel.deselectImage(except: index)
+                        didEndDrag: {
+                            viewModel.didEndDrag()
                         })
-                    .onAppear {
-                        viewModel.images[index].position = CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    }
                 }
                 
                 //Add Strokes to view
@@ -44,12 +40,14 @@ struct CanvasView: View {
                     }
                     .stroke(Color.black, lineWidth: 1)
                 }
+                
+                // Snap Indicators
                 if viewModel.showHorizontalSnapIndicator {
                     Path { path in
                         path.move(to: CGPoint(x: 0, y: viewModel.snapIndicatorPosition.y))
                         path.addLine(to: CGPoint(x: geometry.size.width, y: viewModel.snapIndicatorPosition.y))
                     }
-                    .stroke(Color.red, lineWidth: 2)
+                    .stroke(Color.yellow, lineWidth: 1)
                 }
                 
                 if viewModel.showVerticalSnapIndicator {
@@ -57,10 +55,16 @@ struct CanvasView: View {
                         path.move(to: CGPoint(x: viewModel.snapIndicatorPosition.x, y: 0))
                         path.addLine(to: CGPoint(x: viewModel.snapIndicatorPosition.x, y: geometry.size.height))
                     }
-                    .stroke(Color.red, lineWidth: 2)
+                    .stroke(Color.yellow, lineWidth: 1)
                 }
             }
-            .id(viewModel.showHorizontalSnapIndicator || viewModel.showVerticalSnapIndicator)
+            .contentShape(Rectangle()) // Makes the whole area tappable, not just the HStack
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ gesture in
+                        viewModel.tapGestureRecognized(at: gesture.location)
+                    })
+            )
         }
         .clipped()
     }

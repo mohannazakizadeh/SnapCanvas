@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol OverlayServiceProtocol {
     func loadOverlays() async throws -> [OverlayCategory]
     func extractAllSourceURLs() async throws -> [String]
+    func fetchImage(with url: URL?) async throws -> UIImage?
 }

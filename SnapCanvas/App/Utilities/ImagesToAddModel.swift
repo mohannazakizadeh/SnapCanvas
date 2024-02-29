@@ -6,17 +6,28 @@
 //
 
 import SwiftUI
-import Combine
 
 final class ImagesToAddModel: ObservableObject {
     @Published var images: [ImageToAdd] = []
+    
 }
 
-struct ImageToAdd: Equatable {
+final class ImageToAdd: Equatable, ObservableObject {
+    
     let id = UUID()
     var image: UIImage
-    var position: CGPoint
+    @Published var position: CGPoint
     var size: CGSize
-    var isSelected: Bool = false
-    var angle: Angle = Angle()
+    @Published var isSelected: Bool
+    
+    init(image: UIImage, position: CGPoint, size: CGSize, isSelected: Bool = false) {
+        self.image = image
+        self.position = position
+        self.size = size
+        self.isSelected = isSelected
+    }
+    
+    static func == (lhs: ImageToAdd, rhs: ImageToAdd) -> Bool {
+        lhs.id == rhs.id
+    }
 }

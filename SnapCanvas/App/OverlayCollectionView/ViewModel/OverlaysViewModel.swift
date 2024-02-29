@@ -36,6 +36,25 @@ final class OverlaysViewModel {
         }
     }
     
+    func loadImage(for urlString: String) async throws -> UIImage? {
+//        guard let url = URL(string: urlString) else {
+//            throw URLError(.badURL)
+//        }
+//        let (data, response) = try await URLSession.shared.data(from: url)
+//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+//            throw URLError(.badServerResponse)
+//        }
+//        
+//        if let image = UIImage(data: data) {
+//            return image
+//        } else {
+//            throw URLError(.cannotDecodeContentData)
+//        }
+        
+        let image = try await self.dataProvider.fetchImage(with: URL(string: urlString))
+        return image
+    }
+    
     func getSize(for image: UIImage) -> CGSize {
         let maxWidth: CGFloat = 100.0
         let maxHeight: CGFloat = 100.0

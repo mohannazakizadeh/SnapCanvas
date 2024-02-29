@@ -46,22 +46,4 @@ final class OverlayCell: UICollectionViewCell {
         super.prepareForReuse()
         overlayImageView.image = nil
     }
-    
-    func fetchImage(from urlString: String) async throws -> UIImage? {
-        guard let url = URL(string: urlString) else {
-            throw URLError(.badURL)
-        }
-        
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw URLError(.badServerResponse)
-        }
-        
-        if let image = UIImage(data: data) {
-            return image
-        } else {
-            throw URLError(.cannotDecodeContentData)
-        }
-    }
 }

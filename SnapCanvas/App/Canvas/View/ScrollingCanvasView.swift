@@ -17,12 +17,6 @@ struct ScrollingCanvasView: View {
                 CanvasView(viewModel: viewModel)
                     .background(Color.white)
                     .accessibilityIdentifier("CanvasViewContainer")
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onEnded({ gesture in
-                                viewModel.tapGestureRecognized(at: gesture.predictedEndLocation)
-                            })
-                    )
                 RoundButton(backgroundColor: Color.gray, foregroundColor: .black, identifier: "AddCanvasButton", imageName: "plus") {
                     viewModel.addSection()
                 }
@@ -34,5 +28,5 @@ struct ScrollingCanvasView: View {
 }
 
 #Preview {
-    ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: .constant([ImageToAdd(image: UIImage(systemName: "fleuron")!, position: .zero, size: CGSize(width: 60, height: 50))])))
+    ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: .constant([ImageToAdd(image: UIImage(systemName: "fleuron")!, position: .zero, size: CGSize(width: 60, height: 50), isSelected: false)])))
 }

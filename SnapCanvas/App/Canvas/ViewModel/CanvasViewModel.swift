@@ -23,14 +23,15 @@ class CanvasViewModel: ObservableObject {
     
     func tapGestureRecognized(at location: CGPoint) {
         if let index = images.firstIndex(where: { imageModel in
-            let imageFrame = CGRect(x: imageModel.position.x - (imageModel.size.width/2), y: imageModel.position.y - (imageModel.size.height/2), width: imageModel.size.width, height: imageModel.size.height)
-            return imageFrame.contains(location)
+            // Calculate the origin based on center and size
+            let originX = imageModel.position.x - (imageModel.size.width / 2)
+            let originY = imageModel.position.y - (imageModel.size.height / 2)
+            
+            // Create the frame
+            let imageFrame = CGRect(x: originX, y: originY, width: imageModel.size.width, height: imageModel.size.height)
+            return !imageFrame.contains(location)
         }) {
-            images[index].isSelected = true
-        } else {
-            for (index, _) in images.enumerated() {
-                images[index].isSelected = false
-            }
+            images[index].isSelected = false
         }
     }
     
@@ -43,55 +44,87 @@ class CanvasViewModel: ObservableObject {
     }
     
     func snapDragging(for id: UUID, location: CGPoint, geometry: GeometryProxy) {
-        if let index = getIndex(for: id) {
-            var newPosition = location
-            // Example: Snap to left or right edge
-            if abs(newPosition.x - snapThreshold) < snapThreshold {
-                newPosition.x = snapThreshold
-                
-                self.showVerticalSnapIndicator = true
-                self.snapIndicatorPosition = CGPoint(x: newPosition.x, y: snapThreshold)
-                
-            } else if abs(newPosition.x - (geometry.size.width - snapThreshold)) < snapThreshold {
-                newPosition.x = geometry.size.width - snapThreshold
-                
-                self.showVerticalSnapIndicator = true
-                self.snapIndicatorPosition = CGPoint(x: newPosition.x, y: snapThreshold)
-            }
+        guard let index = getIndex(for: id) else { return }
+        var newPosition = location
+
+        // Snap to left
+        if abs(newPosition.x - (images[index].size.width/2) - snapThreshold) < snapThreshold {
+            newPosition.x = snapThreshold + (images[index].size.width/2)
             
-            // Example: Snap to top or bottom edge
-            if abs(newPosition.y - snapThreshold) < snapThreshold {
-                newPosition.y = snapThreshold
-                self.showHorizontalSnapIndicator = true
-                self.snapIndicatorPosition = CGPoint(x: geometry.size.width / 2, y: snapThreshold)
-            } else if abs(newPosition.y - (geometry.size.height - snapThreshold)) < snapThreshold {
-                newPosition.y = geometry.size.height - snapThreshold
-                self.showHorizontalSnapIndicator = true
-                self.snapIndicatorPosition = CGPoint(x: geometry.size.width / 2, y: newPosition.y)
-            }
+            self.showVerticalSnapIndicator = true
+            self.snapIndicatorPosition = CGPoint(x: snapThreshold, y: 0)
+        } 
+        // snap to right
+        else if abs(newPosition.x + (images[index].size.width/2) - (geometry.size.width - snapThreshold)) < snapThreshold {
+            newPosition.x = (geometry.size.width - snapThreshold) - (images[index].size.width/2)
             
-            // Snap to nearest stroke
-            let sectionWidth = geometry.size.width / CGFloat(numberOfSections)
-            for i in 1..<numberOfSections {
-                let strokePosition = sectionWidth * CGFloat(i)
-                if abs(newPosition.x - strokePosition) < snapThreshold {
-                    newPosition.x = strokePosition + snapThreshold
-                    showVerticalSnapIndicator = true
-                    self.snapIndicatorPosition = CGPoint(x: newPosition.x, y: 0)
-                    break
+            self.showVerticalSnapIndicator = true
+            self.snapIndicatorPosition = CGPoint(x: geometry.size.width - snapThreshold, y: 0)
+        } 
+//        else {
+//            showVerticalSnapIndicator = false
+//        }
+        
+        // Snap to top edge
+        if abs(newPosition.y - (images[index].size.height/2) - snapThreshold) < snapThreshold {
+            newPosition.y = snapThreshold + (images[index].size.height/2)
+            self.showHorizontalSnapIndicator = true
+            self.snapIndicatorPosition = CGPoint(x: 0, y: snapThreshold)
+        }
+        // snap to bottom edge
+        else if abs(newPosition.y + (images[index].size.height/2) - (geometry.size.height - snapThreshold)) < snapThreshold {
+            newPosition.y = (geometry.size.height - snapThreshold) - (images[index].size.height/2)
+            self.showHorizontalSnapIndicator = true
+            self.snapIndicatorPosition = CGPoint(x: 0, y: (geometry.size.height - snapThreshold))
+        } 
+//        else {
+//            self.showHorizontalSnapIndicator = false
+//        }
+        
+        // Snap to nearest stroke
+        let sectionWidth = geometry.size.width / CGFloat(numberOfSections)
+        for i in 1..<numberOfSections {
+            let strokePosition = sectionWidth * CGFloat(i)
+            if abs(newPosition.x - strokePosition) < snapThreshold {
+                newPosition.x = strokePosition
+                showVerticalSnapIndicator = true
+                self.snapIndicatorPosition = CGPoint(x: strokePosition, y: 0)
+                break
+            }
+//            else {
+//                self.showVerticalSnapIndicator = false
+//            }
+        }
+        
+        // snap to middle
+        if abs(newPosition.x - (geometry.size.width / 2)) < snapThreshold {
+            newPosition.x = geometry.size.width / 2
+            showVerticalSnapIndicator = true
+            snapIndicatorPosition = CGPoint(x: newPosition.x, y: 0)
+        }
+        
+        if abs(newPosition.y - (geometry.size.height / 2)) < snapThreshold {
+            newPosition.y = geometry.size.height / 2
+            showHorizontalSnapIndicator = true
+            snapIndicatorPosition = CGPoint(x: newPosition.x, y: newPosition.y)
+        }
+        
+        // snap to nearest item
+        for image in images {
+            if image.id != id {
+                if abs(newPosition.x - image.position.x) < snapThreshold {
+                    newPosition.x = image.position.x + snapThreshold
                 }
             }
-            
-            // Assign the new position, possibly snapped
-            images[index].position = newPosition
         }
+        
+        // Assign the new position, possibly snapped
+        images[index].position = newPosition
+        
     }
     
-    func deselectImage(except index: Int) {
-        for index in images.indices {
-            if index != index {
-                images[index].isSelected = false
-            }
-        }
+    func didEndDrag() {
+        showVerticalSnapIndicator = false
+        showHorizontalSnapIndicator = false
     }
 }

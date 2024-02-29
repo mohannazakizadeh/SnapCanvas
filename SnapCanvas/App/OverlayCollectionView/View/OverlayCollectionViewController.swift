@@ -28,7 +28,7 @@ final class OverlayCollectionViewController: UIViewController {
     // MARK: - View properties
     private lazy var closeButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
-        button.tintColor = .black
+        button.tintColor = .lightGray
         return button
     }()
     

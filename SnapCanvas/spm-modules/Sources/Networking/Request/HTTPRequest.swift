@@ -65,14 +65,6 @@ public class HTTPRequest: CustomStringConvertible {
     public func fetch(_ client: HTTPClient) async throws -> HTTPResponse {
         return try await client.fetch(self)
     }
-    
-    // MARK: - Reactive Fetch Operations
-    /// Fetch data in a publisher that publish the raw response.
-    /// - Parameter client: client where execute the request.
-    /// - Returns: Publisher that emits raw response
-    public func fetch(_ client: HTTPClient) -> AnyPublisher<HTTPResponse, HTTPResponseError> {
-        return client.fetchPublisher(self)
-    }
 }
 
 // MARK: - HTTPRequest + URLComponents
@@ -144,14 +136,6 @@ public extension HTTPRequest {
         self.urlRequest = urlRequest
         
         return urlRequest
-    }
-}
-
-extension Dictionary {
-    mutating func merge(dict: [Key: Value]){
-        for (k, v) in dict {
-            updateValue(v, forKey: k)
-        }
     }
 }
 
