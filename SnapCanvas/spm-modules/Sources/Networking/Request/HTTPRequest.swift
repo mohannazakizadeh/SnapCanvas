@@ -38,9 +38,6 @@ public class HTTPRequest: CustomStringConvertible {
     /// with precedence for request's keys.
     public var headers: [String: String] = [:]
     
-    /// Request's body.
-    public var body: HTTPBody?
-    
     /// Description of the request
     public var description: String {
         "\(url?.absoluteString ?? "") [\(method)] "
@@ -65,25 +62,10 @@ public class HTTPRequest: CustomStringConvertible {
     public func fetch(_ client: HTTPClient) async throws -> HTTPResponse {
         return try await client.fetch(self)
     }
-    
-    // MARK: - Reactive Fetch Operations
-    /// Fetch data in a publisher that publish the raw response.
-    /// - Parameter client: client where execute the request.
-    /// - Returns: Publisher that emits raw response
-    public func fetch(_ client: HTTPClient) -> AnyPublisher<HTTPResponse, HTTPResponseError> {
-        return client.fetchPublisher(self)
-    }
 }
 
 // MARK: - HTTPRequest + URLComponents
 public extension HTTPRequest {
-    
-    /// Set an absolute host of the url.
-    /// When not nil it will override the destination `HTTPClient`'s `host` parameter.
-    var host: String? {
-        get { urlComponents.host }
-        set { urlComponents.host = newValue }
-    }
     
     /// path component of the URL.
     ///
@@ -91,28 +73,18 @@ public extension HTTPRequest {
         get { urlComponents.path }
         set { urlComponents.path = newValue }
     }
-    
-    /// Setup a list of query string parameters.
-    var query: [URLQueryItem]? {
-        get { urlComponents.queryItems }
-        set { urlComponents.queryItems = newValue }
-    }
 }
 
 // MARK: - URLRequest Builders
 public extension HTTPRequest {
     
-    // MARK: - Internal Functions
+    // MARK: Internal Functions
     
     /// Create the `URLRequest` instance for a client instance.
     ///
     /// - Parameter client: client instance.
     /// - Returns: `URLRequest`
     func urlRequest(inClient client: HTTPClient?) throws -> URLRequest {
-        
-        if let params = body?.params {
-            self.urlComponents.queryItems = params
-        }
         
         guard let client = client, let url = urlComponents.fullURLInClient(client) else {
             throw HTTPResponseError(.internal)
@@ -126,8 +98,6 @@ public extension HTTPRequest {
         let requestHeaders = client.defaultHeaders
             .merging(headers) { _, new in
                 new
-            }.merging(body?.headers ?? [:]) { _, new in
-                new
             }
         
         // Prepare the request
@@ -138,20 +108,10 @@ public extension HTTPRequest {
                                         headers: requestHeaders)
         urlRequest.httpShouldHandleCookies = true
         
-        // setting body
-        urlRequest.httpBody = body?.content
         
         self.urlRequest = urlRequest
         
         return urlRequest
-    }
-}
-
-extension Dictionary {
-    mutating func merge(dict: [Key: Value]){
-        for (k, v) in dict {
-            updateValue(v, forKey: k)
-        }
     }
 }
 

@@ -9,10 +9,11 @@ import Foundation
 import NetworkingInterface
 import Combine
 import Networking
+import UIKit
 
-final class AppDataProvider: NetworkingInterface {
+final class OverlayDataProvider: NetworkingInterface, OverlayServiceProtocol {
     
-    static let baseURL: URL = URL(string: "https://appostropheanalytics.herokuapp.com")!
+    static let baseURL: URL = URL(string: "https://appostropheanalytics.herokuapp.com/scrl/test")!
     
     private let networkLogger: HTTPLoggerProtocol
     
@@ -32,12 +33,27 @@ final class AppDataProvider: NetworkingInterface {
             throw error
         }
     }
-}
-
-final class OverlayDataProvider: OverlayServiceProtocol {
+    
+    func fetchImage(with url: URL?) async throws -> UIImage? {
+        let client = HTTPClient(baseURL: Self.baseURL)
+        let request = HTTPRequest(router: OverlayServiceRouter())
+        request.url = url
+        
+        do {
+            let response = try await request.fetch(client)
+            if let data = response.data {
+                return UIImage(data: data)
+            }
+        }
+        catch let error as HTTPResponseError {
+            throw error
+        }
+        return nil
+    }
+    
     func loadOverlays() async throws -> [OverlayCategory] {
         let overlayRouter = OverlayServiceRouter()
-        let overLayCategoryData = try await AppDataProvider().fetchData(with: overlayRouter, for: [OverlayCategory].self)
+        let overLayCategoryData = try await fetchData(with: overlayRouter, for: [OverlayCategory].self)
         return overLayCategoryData
     }
     

@@ -14,7 +14,7 @@ import NetworkingInterface
 /// data collected from the request including metrics and errors.
 public class HTTPResponse {
     
-    // MARK: - Public Properties
+    // MARK: Public Properties
     
     /// `URLResponse` object received from server.
     public var urlResponse: URLResponse?
@@ -88,6 +88,7 @@ public class HTTPResponse {
     }
 }
 
+// MARK: - Pretty print json
 public extension Data {
     var prettyPrintedJson: String? {
         guard let object = try? JSONSerialization.jsonObject(with: self, options: []),

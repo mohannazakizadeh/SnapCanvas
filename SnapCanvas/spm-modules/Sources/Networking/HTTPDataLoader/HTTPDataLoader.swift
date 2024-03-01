@@ -43,7 +43,7 @@ internal class HTTPDataLoader: NSObject, URLSessionTaskDelegate {
     
     // MARK: - Internal Function
     
-    /// Perform fetch of the request in background and return the response asynchrously.
+    /// Perform fetch of the request in background and return the response asynchronously.
     ///
     /// - Parameter request: request to execute.
     /// - Returns: `HTTPResponse`
@@ -71,44 +71,6 @@ internal class HTTPDataLoader: NSObject, URLSessionTaskDelegate {
             }
             throw translatedError ?? error
         }
-    }
-    
-    // MARK: - Reactive Fetch Operations
-    
-    func fetchRawResponsePublisher(request: HTTPRequest) -> AnyPublisher<HTTPResponse, HTTPResponseError> {
-        
-        guard let client = client else {
-            fatalError("HTTPClient can't be nil")
-        }
-        
-        guard let urlRequest = try? request.urlRequest(inClient: client) else {
-            return Fail(error: HTTPResponseError(.invalidURL))
-                    .eraseToAnyPublisher()
-        }
-        let networkCallTimestamp: Date = Date()
-        
-        return client
-            .session
-            .dataTaskPublisher(for: urlRequest)
-            .mapError({ urlError -> HTTPResponseError in
-                return HTTPResponseError.fromResponse(nil, error: urlError) ?? .init(.network)
-            })
-            .tryMap({ data, response -> HTTPResponse in
-                let httpResponse = HTTPResponse(response: response, data: data)
-                if let httpResponseError = httpResponse.error {
-                    throw httpResponseError
-                }
-                return httpResponse
-            })
-            .mapError({ error -> HTTPResponseError in
-                if let httpResponseError = error as? HTTPResponseError {
-                    return httpResponseError
-                } else {
-                    return HTTPResponseError(.internal)
-                }
-            })
-            .eraseToAnyPublisher()
-            .logRequest(request: request, logger: networkLogger, requestTime: networkCallTimestamp)
     }
 }
 

@@ -43,13 +43,6 @@ struct NetworkLogger: HTTPLoggerProtocol {
                 message.append("] \n")
             }
         }
-        if request.body?.content.isEmpty == false && logRequestBody {
-            if let body = request.body {
-                message.append(" == Parameters (HTTPBody):\n")
-                let httpBodyString: String = String(data: body.content, encoding: .utf8) ?? "BAD ENCODING\n"
-                message.append("  \(httpBodyString)\n")
-            }
-        }
         
         // Response
         guard let response else {

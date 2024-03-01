@@ -18,7 +18,7 @@ public class HTTPClient: HTTPClientProtocol, CustomStringConvertible {
         "[\(self.baseURL.absoluteString)]"
     }
     
-    /// URLSessionConfigurastion used to perform request in this client.
+    /// URLSessionConfiguration used to perform request in this client.
     public var session: URLSession {
         loader.session
     }
@@ -82,10 +82,6 @@ public class HTTPClient: HTTPClientProtocol, CustomStringConvertible {
     /// - Returns: `HTTPResponse`
     public func fetch(_ request: HTTPRequest) async throws -> HTTPResponse {
         try await loader.fetch(request)
-    }
-    
-    public func fetchPublisher(_ request: HTTPRequest) -> AnyPublisher<HTTPResponse, HTTPResponseError> {
-        loader.fetchRawResponsePublisher(request: request)
     }
 }
 

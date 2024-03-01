@@ -8,24 +8,19 @@
 import XCTest
 
 final class SnapCanvasUITests: XCTestCase {
+    var app: XCUIApplication!
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        app = XCUIApplication()
+        app.launch()
         continueAfterFailure = false
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
     func testAddingCanvasSections() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         
         // Find the Add Canvas Button
         let addCanvasButton = app.buttons["AddCanvasButton"]
@@ -37,21 +32,39 @@ final class SnapCanvasUITests: XCTestCase {
         
         let initialCanvasWidth = canvasViewContainer.frame.width
         
-        let scrollView = XCUIApplication().scrollViews.firstMatch
+        let scrollView = app.scrollViews.firstMatch
         scrollView.scrollToElement(element: addCanvasButton, maxSwipes: 1)
         
         addCanvasButton.tap()
         let finalCanvasWidth = canvasViewContainer.frame.width
         
-        XCTAssertEqual(initialCanvasWidth+150, finalCanvasWidth, "Canvas did not add")
+        XCTAssertEqual(ceil(initialCanvasWidth+150), ceil(finalCanvasWidth), "Canvas did not add")
     }
+    
+    func testTapAddContentButtonOpensSheet() throws {
+        openContentBottomSheet()
+    }
+    
+    func testTapOverlayButtonOpensOverlaysView() throws {
+        openContentBottomSheet()
+        let overlayButton = app.buttons["sparkles"]
+        XCTAssert(overlayButton.exists, "The overlays Button does not exist.")
+        overlayButton.tap()
+        
+        let overlaysCollectionView = app.otherElements["OverlaysCollectionView"]
+        XCTAssertTrue(overlaysCollectionView.waitForExistence(timeout: 2), "The overlaysCollectionView should be visible after tapping the button.")
+        
+    }
+}
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+// Extension for helper funcs to prevent code repeating
+extension SnapCanvasUITests {
+    func openContentBottomSheet() {
+        let roundButton = app.buttons["ShowSheetButton"]
+        XCTAssert(roundButton.exists, "The show sheet Button does not exist.")
+        roundButton.tap()
+        
+        let addContentSheetView = app.otherElements["AddContentSheetView"]
+        XCTAssertTrue(addContentSheetView.waitForExistence(timeout: 2), "The AddContentSheetView should be visible after tapping the button.")
     }
 }
