@@ -38,8 +38,9 @@ final class OverlayCollectionViewController: UIViewController {
         setupViews()
     }
     
+    // MARK: - Setup view elements
     func setupViews() {
-        self.title = "Ovelays"
+        self.title = "Overlays"
         self.navigationItem.rightBarButtonItem = closeButton
         self.navigationController?.isNavigationBarHidden = false
         self.configureCollectionView()
@@ -76,6 +77,6 @@ final class OverlayCollectionViewController: UIViewController {
     }
     
     @objc func closeButtonTapped() {
-        viewModel.onRequestDismiss?()
+        viewModel.onRequestDismiss(nil)
     }
 }

@@ -22,6 +22,9 @@ let package = Package(
         .target(
             name: "Networking",
             dependencies: ["NetworkingInterface"]),
+        .testTarget(
+            name: "NetworkingTests",
+            dependencies: ["Networking", "NetworkingInterface"]),
         .target(
             name: "NetworkingInterface"),
         .target(name: "SwiftUIComponents")

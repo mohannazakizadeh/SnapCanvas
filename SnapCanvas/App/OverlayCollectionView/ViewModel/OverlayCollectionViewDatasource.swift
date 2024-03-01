@@ -46,9 +46,9 @@ final class OverlayCollectionViewDataSource: NSObject, UICollectionViewDataSourc
             let size = viewModel.getSize(for: image)
             let position = CGPoint(x: size.width / 2, y: size.height / 2)
             let imageToAddModel = ImageToAdd(image: image, position: position, size: size, isSelected: true)
-            viewModel.imagesToAddModel.images.append(imageToAddModel)
+            viewModel.onRequestDismiss(imageToAddModel)
         }
-        viewModel.onRequestDismiss?()
+        viewModel.onRequestDismiss(nil)
     }
 
     

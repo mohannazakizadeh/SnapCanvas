@@ -14,12 +14,13 @@ import NetworkingInterface
 final class OverlaysViewModel {
     var dataProvider: OverlayServiceProtocol
     var overlayCollectionViewDataSource: OverlayCollectionViewDataSource?
-    var onRequestDismiss: (() -> Void)?
-    var imagesToAddModel: ImagesToAddModel
+    var onRequestDismiss: ((ImageToAdd?) -> Void)
     
-    init(dataProvider: OverlayServiceProtocol, imageToAdd: ImagesToAddModel) {
+    @Published var urls: [String] = []
+    
+    init(dataProvider: OverlayServiceProtocol, onRequestDismiss: @escaping ((ImageToAdd?) -> Void)) {
         self.dataProvider = dataProvider
-        self.imagesToAddModel = imageToAdd
+        self.onRequestDismiss = onRequestDismiss
     }
     
     func loadOverlays() {
@@ -28,7 +29,8 @@ final class OverlaysViewModel {
                 let overlaysUrl = try await dataProvider.extractAllSourceURLs()
                 
                 await MainActor.run {
-                    self.overlayCollectionViewDataSource?.updateOverlays(with: overlaysUrl)
+                    urls = overlaysUrl
+                    self.overlayCollectionViewDataSource?.updateOverlays(with: urls)
                 }
             } catch let error as HTTPResponseError {
                 print("DEBUG: \(error)")
@@ -37,20 +39,6 @@ final class OverlaysViewModel {
     }
     
     func loadImage(for urlString: String) async throws -> UIImage? {
-//        guard let url = URL(string: urlString) else {
-//            throw URLError(.badURL)
-//        }
-//        let (data, response) = try await URLSession.shared.data(from: url)
-//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-//            throw URLError(.badServerResponse)
-//        }
-//        
-//        if let image = UIImage(data: data) {
-//            return image
-//        } else {
-//            throw URLError(.cannotDecodeContentData)
-//        }
-        
         let image = try await self.dataProvider.fetchImage(with: URL(string: urlString))
         return image
     }

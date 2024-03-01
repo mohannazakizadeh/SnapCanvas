@@ -14,6 +14,6 @@ final class OverlayServiceRouter: NetworkingRouterProtocol {
     }
 
     var path: String {
-        return "scrl/test/overlays"
+        return "overlays"
     }
 }

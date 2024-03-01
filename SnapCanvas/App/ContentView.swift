@@ -29,7 +29,10 @@ struct ContentView: View {
                     .accessibilityIdentifier("AddContentSheetView")
                     .accessibilityElement(children: .ignore)
             case .overLaysBottomSheet:
-                OverlayCollectionViewRepresentable(imageToAddModel: imagesToAdd) {
+                OverlayCollectionViewRepresentable { imageToAdd in
+                    if let image = imageToAdd {
+                        imagesToAdd.images.append(image)
+                    }
                     activeSheet = nil
                 }
             }

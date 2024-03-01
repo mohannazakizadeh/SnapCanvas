@@ -11,9 +11,9 @@ import Combine
 import Networking
 import UIKit
 
-final class OverlayDataProvider: NetworkingInterface ,OverlayServiceProtocol {
+final class OverlayDataProvider: NetworkingInterface, OverlayServiceProtocol {
     
-    static let baseURL: URL = URL(string: "https://appostropheanalytics.herokuapp.com")!
+    static let baseURL: URL = URL(string: "https://appostropheanalytics.herokuapp.com/scrl/test")!
     
     private let networkLogger: HTTPLoggerProtocol
     

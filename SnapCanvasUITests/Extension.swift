@@ -9,11 +9,9 @@ import XCTest
 
 extension XCUIElement {
     func scrollToElement(element: XCUIElement, maxSwipes: Int = 10) {
-        // Check if the element is already hittable (visible and interactable)
         for _ in 0..<maxSwipes {
-//            if element.isHittable { return }
-            let startCoord = self.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-            let endCoord = self.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.1)) 
+            let startCoord = self.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 0.0))
+            let endCoord = self.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.0))
             startCoord.press(forDuration: 0.01, thenDragTo: endCoord)
         }
     }
