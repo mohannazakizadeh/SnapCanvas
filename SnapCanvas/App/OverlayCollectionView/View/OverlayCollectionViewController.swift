@@ -43,6 +43,7 @@ final class OverlayCollectionViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = closeButton
         self.navigationController?.isNavigationBarHidden = false
         self.configureCollectionView()
+        self.view.accessibilityIdentifier = "OverlaysCollectionView"
     }
     
     func configureCollectionView() {
@@ -77,24 +78,4 @@ final class OverlayCollectionViewController: UIViewController {
     @objc func closeButtonTapped() {
         viewModel.onRequestDismiss?()
     }
-}
-
-struct OverlayCollectionViewRepresentable: UIViewControllerRepresentable {
-    
-    @ObservedObject var imageToAddModel: ImagesToAddModel
-    var onRequestDismiss: (() -> Void)?
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let dataProvider = OverlayDataProvider()
-        let viewModel = OverlaysViewModel(dataProvider: dataProvider, imageToAdd: _imageToAddModel)
-        viewModel.onRequestDismiss = onRequestDismiss
-        
-        let navigationController = UINavigationController(rootViewController: OverlayCollectionViewController(overlaysViewModel: viewModel))
-        return navigationController
-    }
-    
 }

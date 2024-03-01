@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUIComponents
 
 struct ScrollingCanvasView: View {
-    @ObservedObject var viewModel: CanvasViewModel
+    var viewModel: CanvasViewModel
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             Spacer()
@@ -28,5 +28,5 @@ struct ScrollingCanvasView: View {
 }
 
 #Preview {
-    ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: .constant([ImageToAdd(image: UIImage(systemName: "fleuron")!, position: .zero, size: CGSize(width: 60, height: 50), isSelected: false)])))
+    ScrollingCanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: [ImageToAdd(image: UIImage(systemName: "fleuron")!, position: .zero, size: CGSize(width: 60, height: 50), isSelected: false)]))
 }

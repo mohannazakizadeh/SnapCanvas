@@ -15,11 +15,11 @@ final class OverlaysViewModel {
     var dataProvider: OverlayServiceProtocol
     var overlayCollectionViewDataSource: OverlayCollectionViewDataSource?
     var onRequestDismiss: (() -> Void)?
-    @ObservedObject var imagesToAddModel: ImagesToAddModel
+    var imagesToAddModel: ImagesToAddModel
     
-    init(dataProvider: OverlayServiceProtocol, imageToAdd: ObservedObject<ImagesToAddModel>) {
+    init(dataProvider: OverlayServiceProtocol, imageToAdd: ImagesToAddModel) {
         self.dataProvider = dataProvider
-        self._imagesToAddModel = imageToAdd
+        self.imagesToAddModel = imageToAdd
     }
     
     func loadOverlays() {

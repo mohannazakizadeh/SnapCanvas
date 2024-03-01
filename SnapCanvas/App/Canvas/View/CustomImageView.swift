@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CustomImageView: View {
-    @ObservedObject var imageModel: ImageToAdd
-    @ObservedObject var parentViewModel: CanvasViewModel
+    var imageModel: ImageToAdd
+    var parentViewModel: CanvasViewModel
     var geometry: GeometryProxy
     
     var didEndDrag: () -> Void
@@ -64,7 +64,7 @@ struct Preview: View {
         GeometryReader { geometry in
             CustomImageView(
                 imageModel: mock,
-                parentViewModel: CanvasViewModel(numberOfSections: 3, images: .constant([])),
+                parentViewModel: CanvasViewModel(numberOfSections: 3, images: []),
                 geometry: geometry, didEndDrag: {}
             )
             .onAppear {

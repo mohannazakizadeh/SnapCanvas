@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CanvasView: View {
-    @ObservedObject var viewModel: CanvasViewModel
+    var viewModel: CanvasViewModel
     var body: some View {
         
         GeometryReader { geometry in
@@ -58,7 +58,7 @@ struct CanvasView: View {
                     .stroke(Color.yellow, lineWidth: 1)
                 }
             }
-            .contentShape(Rectangle()) // Makes the whole area tappable, not just the HStack
+            .contentShape(Rectangle()) // Makes the whole area tappable
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged({ gesture in
@@ -71,5 +71,5 @@ struct CanvasView: View {
 }
 
 #Preview {
-    CanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: .constant([])))
+    CanvasView(viewModel: CanvasViewModel(numberOfSections: 3, images: []))
 }

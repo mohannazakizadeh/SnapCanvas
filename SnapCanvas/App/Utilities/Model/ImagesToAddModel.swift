@@ -5,20 +5,24 @@
 //  Created by Mohanna Zakizadeh on 2/25/24.
 //
 
-import SwiftUI
+import Observation
+import Foundation
+import UIKit
 
-final class ImagesToAddModel: ObservableObject {
-    @Published var images: [ImageToAdd] = []
+@Observable
+final class ImagesToAddModel {
+    var images: [ImageToAdd] = []
     
 }
 
-final class ImageToAdd: Equatable, ObservableObject {
+@Observable
+final class ImageToAdd: Equatable {
     
     let id = UUID()
     var image: UIImage
-    @Published var position: CGPoint
+    var position: CGPoint
     var size: CGSize
-    @Published var isSelected: Bool
+    var isSelected: Bool
     
     init(image: UIImage, position: CGPoint, size: CGSize, isSelected: Bool = false) {
         self.image = image

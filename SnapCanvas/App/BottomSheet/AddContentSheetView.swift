@@ -1,5 +1,5 @@
 //
-//  BottomSheetView.swift
+//  AddContentSheetView.swift
 //  SnapCanvas
 //
 //  Created by Mohanna Zakizadeh on 2/24/24.
@@ -8,9 +8,9 @@
 import SwiftUI
 import SwiftUIComponents
 
-struct BottomSheetView: View {
+struct AddContentSheetView: View {
 
-    @ObservedObject var viewModel: BottomSheetViewModel
+    var viewModel: AddContentSheetViewModel
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
@@ -22,6 +22,7 @@ struct BottomSheetView: View {
                 }
             }
         }
+        .accessibilityElement(children: .ignore)
         .ignoresSafeArea()
     }
 }
@@ -32,13 +33,16 @@ struct BottomSheetButtonView: View {
     var action: () -> Void
     var body: some View {
         VStack {
-            RoundButton(backgroundColor: Color.gray.opacity(0.5), foregroundColor: .white, identifier: "", imageName: imageName, action: action)
+            RoundButton(backgroundColor: Color.gray.opacity(0.5), foregroundColor: .white, identifier: imageName, imageName: imageName, action: action)
             Text(label)
                 .foregroundStyle(.white)
+                .accessibilityIdentifier(label)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityIdentifier(label + imageName)
     }
 }
 
 #Preview {
-    BottomSheetView(viewModel: BottomSheetViewModel(activeSheet: .constant(.addContentBottomSheet)))
+    AddContentSheetView(viewModel: AddContentSheetViewModel(activeSheet: .constant(.addContentBottomSheet)))
 }

@@ -6,19 +6,21 @@
 //
 
 import SwiftUI
+import Observation
 
+@Observable
 class CanvasViewModel: ObservableObject {
-    @Published var numberOfSections: Int = 3
-    @Binding var images: [ImageToAdd]
-    @Published var showHorizontalSnapIndicator: Bool = false
-    @Published var showVerticalSnapIndicator: Bool = false
-    @Published var snapIndicatorPosition: CGPoint = .zero
+    var numberOfSections: Int = 3
+    var images: [ImageToAdd]
+    var showHorizontalSnapIndicator: Bool = false
+    var showVerticalSnapIndicator: Bool = false
+    var snapIndicatorPosition: CGPoint = .zero
     
     let snapThreshold: CGFloat = 5
     
-    init(numberOfSections: Int, images: Binding<[ImageToAdd]>) {
+    init(numberOfSections: Int, images: [ImageToAdd]) {
         self.numberOfSections = numberOfSections
-        self._images = images
+        self.images = images
     }
     
     func tapGestureRecognized(at location: CGPoint) {
@@ -29,9 +31,13 @@ class CanvasViewModel: ObservableObject {
             
             // Create the frame
             let imageFrame = CGRect(x: originX, y: originY, width: imageModel.size.width, height: imageModel.size.height)
-            return !imageFrame.contains(location)
+            return imageFrame.contains(location)
         }) {
-            images[index].isSelected = false
+            images[index].isSelected = true
+        } else {
+            for index in images.indices {
+                images[index].isSelected = false
+            }
         }
     }
     
@@ -60,10 +66,7 @@ class CanvasViewModel: ObservableObject {
             
             self.showVerticalSnapIndicator = true
             self.snapIndicatorPosition = CGPoint(x: geometry.size.width - snapThreshold, y: 0)
-        } 
-//        else {
-//            showVerticalSnapIndicator = false
-//        }
+        }
         
         // Snap to top edge
         if abs(newPosition.y - (images[index].size.height/2) - snapThreshold) < snapThreshold {
@@ -76,10 +79,7 @@ class CanvasViewModel: ObservableObject {
             newPosition.y = (geometry.size.height - snapThreshold) - (images[index].size.height/2)
             self.showHorizontalSnapIndicator = true
             self.snapIndicatorPosition = CGPoint(x: 0, y: (geometry.size.height - snapThreshold))
-        } 
-//        else {
-//            self.showHorizontalSnapIndicator = false
-//        }
+        }
         
         // Snap to nearest stroke
         let sectionWidth = geometry.size.width / CGFloat(numberOfSections)
@@ -91,9 +91,6 @@ class CanvasViewModel: ObservableObject {
                 self.snapIndicatorPosition = CGPoint(x: strokePosition, y: 0)
                 break
             }
-//            else {
-//                self.showVerticalSnapIndicator = false
-//            }
         }
         
         // snap to middle
@@ -107,15 +104,6 @@ class CanvasViewModel: ObservableObject {
             newPosition.y = geometry.size.height / 2
             showHorizontalSnapIndicator = true
             snapIndicatorPosition = CGPoint(x: newPosition.x, y: newPosition.y)
-        }
-        
-        // snap to nearest item
-        for image in images {
-            if image.id != id {
-                if abs(newPosition.x - image.position.x) < snapThreshold {
-                    newPosition.x = image.position.x + snapThreshold
-                }
-            }
         }
         
         // Assign the new position, possibly snapped

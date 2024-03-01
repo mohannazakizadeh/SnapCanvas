@@ -1,5 +1,5 @@
 //
-//  BottomSheetViewModel.swift
+//  AddContentSheetViewModel.swift
 //  SnapCanvas
 //
 //  Created by Mohanna Zakizadeh on 2/24/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class BottomSheetViewModel: ObservableObject {
+class AddContentSheetViewModel: ObservableObject {
     
     @Binding var activeSheet: ActiveSheet?
     
