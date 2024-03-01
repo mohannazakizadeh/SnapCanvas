@@ -16,12 +16,12 @@ final class HTTPResponseTests: XCTestCase {
             "name": "Mohanna",
             "appName": "SnapCanvas"
         }
-"""
+    """
     private let corruptedJson = """
                 {
                     "id": "1",
                 }
-"""
+    """
     private struct DummyModel: Decodable {
         let name: String
         let id: String

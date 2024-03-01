@@ -12,6 +12,7 @@ import SwiftUI
 import NetworkingInterface
 
 final class OverlayCollectionViewController: UIViewController {
+
     // MARK: - Properties
     var viewModel: OverlaysViewModel
     private var disposables: Set<AnyCancellable> = Set<AnyCancellable>()
@@ -45,6 +46,16 @@ final class OverlayCollectionViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.configureCollectionView()
         self.view.accessibilityIdentifier = "OverlaysCollectionView"
+        self.view.backgroundColor = .black
+        
+        // MARK: Navigation bar appearance
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.white
+        ]
+        navigationBarAppearance.backgroundColor = UIColor.black
+        self.navigationController?.navigationBar.standardAppearance = navigationBarAppearance
     }
     
     func configureCollectionView() {
@@ -58,13 +69,13 @@ final class OverlayCollectionViewController: UIViewController {
 
         collectionView.delegate = viewModel.overlayCollectionViewDataSource
         collectionView.dataSource = viewModel.overlayCollectionViewDataSource
-        
+        collectionView.backgroundColor = .black
         view.addSubview(collectionView)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
         ])

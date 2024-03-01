@@ -78,7 +78,7 @@ public extension HTTPRequest {
 // MARK: - URLRequest Builders
 public extension HTTPRequest {
     
-    // MARK: - Internal Functions
+    // MARK: Internal Functions
     
     /// Create the `URLRequest` instance for a client instance.
     ///

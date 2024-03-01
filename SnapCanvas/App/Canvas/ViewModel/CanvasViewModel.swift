@@ -10,13 +10,14 @@ import Observation
 
 @Observable
 class CanvasViewModel: ObservableObject {
+    
     var numberOfSections: Int = 3
     var images: [ImageToAdd]
     var showHorizontalSnapIndicator: Bool = false
     var showVerticalSnapIndicator: Bool = false
     var snapIndicatorPosition: CGPoint = .zero
     
-    let snapThreshold: CGFloat = 5
+    private let snapThreshold: CGFloat = 5
     
     init(numberOfSections: Int, images: [ImageToAdd]) {
         self.numberOfSections = numberOfSections

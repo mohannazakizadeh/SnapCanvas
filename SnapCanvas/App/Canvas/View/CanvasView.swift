@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CanvasView: View {
+    
     var viewModel: CanvasViewModel
+    
     var body: some View {
         
         GeometryReader { geometry in

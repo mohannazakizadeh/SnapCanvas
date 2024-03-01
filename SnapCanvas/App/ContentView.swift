@@ -8,6 +8,23 @@
 import SwiftUI
 import SwiftUIComponents
 
+// MARK: - ActiveSheet Enum
+enum ActiveSheet: Identifiable {
+    case addContentBottomSheet
+    case overLaysBottomSheet
+    
+    // This computed property provides a unique ID for each case
+    var id: Int {
+        switch self {
+        case .addContentBottomSheet:
+            return 0
+        case .overLaysBottomSheet:
+            return 1
+        }
+    }
+}
+
+// MARK: - Content View
 struct ContentView: View {
     
     @State var activeSheet: ActiveSheet?
@@ -35,24 +52,10 @@ struct ContentView: View {
                     }
                     activeSheet = nil
                 }
+                .background(Color.black)
             }
         })
         .background(Color.black)
-    }
-}
-
-enum ActiveSheet: Identifiable {
-    case addContentBottomSheet
-    case overLaysBottomSheet
-    
-    // This computed property provides a unique ID for each case
-    var id: Int {
-        switch self {
-        case .addContentBottomSheet:
-            return 0
-        case .overLaysBottomSheet:
-            return 1
-        }
     }
 }
 

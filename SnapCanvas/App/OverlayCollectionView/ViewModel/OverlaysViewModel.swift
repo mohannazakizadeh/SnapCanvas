@@ -12,6 +12,7 @@ import NetworkingInterface
 
 
 final class OverlaysViewModel {
+    
     var dataProvider: OverlayServiceProtocol
     var overlayCollectionViewDataSource: OverlayCollectionViewDataSource?
     var onRequestDismiss: ((ImageToAdd?) -> Void)

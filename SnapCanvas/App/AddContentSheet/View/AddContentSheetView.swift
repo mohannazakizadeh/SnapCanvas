@@ -27,19 +27,23 @@ struct AddContentSheetView: View {
     }
 }
 
-struct BottomSheetButtonView: View {
-    var imageName: String
-    var label: String
-    var action: () -> Void
-    var body: some View {
-        VStack {
-            RoundButton(backgroundColor: Color.gray.opacity(0.5), foregroundColor: .white, identifier: imageName, imageName: imageName, action: action)
-            Text(label)
-                .foregroundStyle(.white)
-                .accessibilityIdentifier(label)
+private extension AddContentSheetView {
+    
+    struct BottomSheetButtonView: View {
+        
+        var imageName: String
+        var label: String
+        var action: () -> Void
+        var body: some View {
+            VStack {
+                RoundButton(backgroundColor: Color.gray.opacity(0.5), foregroundColor: .white, identifier: imageName, imageName: imageName, action: action)
+                Text(label)
+                    .foregroundStyle(.white)
+                    .accessibilityIdentifier(label)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityIdentifier(label + imageName)
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityIdentifier(label + imageName)
     }
 }
 

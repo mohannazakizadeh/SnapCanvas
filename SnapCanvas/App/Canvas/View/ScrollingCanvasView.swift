@@ -9,7 +9,9 @@ import SwiftUI
 import SwiftUIComponents
 
 struct ScrollingCanvasView: View {
+    
     var viewModel: CanvasViewModel
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             Spacer()
